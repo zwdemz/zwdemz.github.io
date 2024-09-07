@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Serch | Yki-yawao</title>
+    <title>This is my first blog | Yki-yawao</title>
     <meta name="author" content="Yki-yawa" />
     <meta name="description" content="Yki-yawao is a blog about programming, technology, and other interesting things." />
     <meta name="keywords" content="Yki-yawao, programming, technology, blog" />
@@ -83,7 +83,7 @@
             <span>&ensp;About</span>
         </a>
         
-        <a href="/Archives/index.html">
+        <a href="/Archives/">
             <i class="fa-solid fa-box-archive fa-fw"></i>
             <span>&ensp;Archives</span>
         </a>
@@ -96,11 +96,6 @@
         <a href="/Tags/index.html">
             <i class="fa-solid fa-tags fa-fw"></i>
             <span>&ensp;Tags</span>
-        </a>
-        
-        <a href="/Search/index.html">
-            <i class="fa-solid fa-search fa-fw"></i>
-            <span>&ensp;Search</span>
         </a>
         
     </nav>
@@ -130,7 +125,7 @@
                     </div>
                 </a>
                 
-                <a href="/Archives/index.html">
+                <a href="/Archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-box-archive fa-fw"></i>
@@ -157,15 +152,6 @@
                     </div>
                 </a>
                 
-                <a href="/Search/index.html">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-search fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Search</div>
-                    </div>
-                </a>
-                
             </div>
         </transition>
     </nav>
@@ -177,21 +163,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Serch</h1>
+        <h1>This is my first blog</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/5
+            2024/9/7
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        
+        <p>This is my first blog</p>
+
     </div>
     
     
@@ -228,6 +215,15 @@
             
         </div>
         
+        <div>
+            <span id="timeDate"></span>
+        </div>
+        <p style="text-align:center" id="saintwei">我只是想再一次的
+            <span style="color: rgb(198, 214, 60);">M</span>
+            <span style="color: rgb(54, 140, 225);">E</span>
+            <span style="color: rgb(110, 64, 170);">k</span>
+            <span style="color: rgb(251, 150, 51);">[</span>
+            <span style="color: rgb(228, 65, 157);">-</span></p>
     </div>
 </footer>
 
@@ -262,7 +258,17 @@
     id="fireworks"
     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
 ></canvas>
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
+<div id="cursor"></div>
+<link rel="stylesheet" href="/css/cursor.min.css" />
+<script src="/js/cursor.min.js"></script>
 <script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="/js/fireworks.min.js"></script>
+<script src="/js/footer.word.js"></script>
+<script src="/js/time.date.js"></script>
 </body>
 </html>
