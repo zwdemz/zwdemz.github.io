@@ -3,7 +3,7 @@
 <html lang="zh-CN,en-US,zh-TW,zh-HK,default">
 <head>
     <meta charset="utf-8" />
-    <title>Archives | Yki-yawao</title>
+    <title>Categories | Yki-yawao</title>
     <meta name="author" content="Yki-yawa" />
     <meta name="description" content="Yki-yawao is a blog about programming, technology, and other interesting things." />
     <meta name="keywords" content="Yki-yawao, programming, technology, blog" />
@@ -45,7 +45,11 @@
 
 
 
-<script src="/js/lib/search.js"></script>
+
+
+
+
+<script src="https://s4.zstatic.net/ajax/libs/twikoo/1.6.31/twikoo.all.min.js"></script>
 
 
 
@@ -157,57 +161,35 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            
-<div id="archives">
-    
-    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
-    
-    <div id="timeline-wrap" ref="timeline">
+            <div class="article">
+    <div>
+        <h1>Categories</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/7
+        </span>
         
-        <div class="timeline" data-title="thisismyfirstblog">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/5/7</div>
-                <a href="/2022/05/07/first-blog/">
-                    <h3>This is my first blog</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/hexo/" style="color: #03a9f4">
-                                hexo
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="centos7.9安装python3.8">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/9/7</div>
-                <a href="/2023/09/07/centos7-9%E5%AE%89%E8%A3%85python3-8/">
-                    <h3>centos7.9安装python3.8</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
         
     </div>
+    
+    <div class="content" v-pre>
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    <div id="comment">
+        <div id="twikoo-container"></div>
+    </div>
+    
+    
 </div>
 
             <footer id="footer">
@@ -254,6 +236,22 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+<script>
+    twikoo.init({
+        el: "#twikoo-container",
+        envId: "https://netlify-twikoo.netlify.app/.netlify/functions/twikoo",
+        region: "ap-shanghai",
+        path: location.pathname,
+        lang: "zh-CN",
+    })
+</script>
+
+
     
     <canvas
     id="fireworks"
