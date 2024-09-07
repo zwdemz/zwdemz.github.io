@@ -3,7 +3,7 @@
 <html lang="zh-CN,en-US,zh-TW,zh-HK,default">
 <head>
     <meta charset="utf-8" />
-    <title>Tags | Yki-yawao</title>
+    <title> | Yki-yawao</title>
     <meta name="author" content="Yki-yawa" />
     <meta name="description" content="Yki-yawao is a blog about programming, technology, and other interesting things." />
     <meta name="keywords" content="Yki-yawao, programming, technology, blog" />
@@ -44,12 +44,6 @@
 <script src="/js/lib/preview.js"></script>
 
 
-
-
-
-
-
-<script src="https://s4.zstatic.net/ajax/libs/twikoo/1.6.31/twikoo.all.min.js"></script>
 
 
 
@@ -161,34 +155,34 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>Tags</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/9/7
+            <div id="archives">
+    
+    <div class="categories-tags">
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%8A%80%E6%9C%AF%EF%BC%8C-python%EF%BC%8C-centOS/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                技术， python， centOS
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/hexo/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                hexo
+            </a>
         </span>
         
         
     </div>
-    
-    <div class="content" v-pre>
-        
-    </div>
-    
-    
-    
-    
-    
-    
-    <div id="comment">
-        <div id="twikoo-container"></div>
-    </div>
-    
     
 </div>
 
@@ -236,22 +230,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-<script>
-    twikoo.init({
-        el: "#twikoo-container",
-        envId: "https://netlify-twikoo.netlify.app/.netlify/functions/twikoo",
-        region: "ap-shanghai",
-        path: location.pathname,
-        lang: "zh-CN",
-    })
-</script>
-
-
     
     <canvas
     id="fireworks"

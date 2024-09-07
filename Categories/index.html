@@ -3,7 +3,7 @@
 <html lang="zh-CN,en-US,zh-TW,zh-HK,default">
 <head>
     <meta charset="utf-8" />
-    <title>Categories | Yki-yawao</title>
+    <title> | Yki-yawao</title>
     <meta name="author" content="Yki-yawa" />
     <meta name="description" content="Yki-yawao is a blog about programming, technology, and other interesting things." />
     <meta name="keywords" content="Yki-yawao, programming, technology, blog" />
@@ -44,12 +44,6 @@
 <script src="/js/lib/preview.js"></script>
 
 
-
-
-
-
-
-<script src="https://s4.zstatic.net/ajax/libs/twikoo/1.6.31/twikoo.all.min.js"></script>
 
 
 
@@ -161,34 +155,12 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>Categories</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/9/7
-        </span>
+            <div id="archives">
+    
+    <div class="categories-tags">
         
         
     </div>
-    
-    <div class="content" v-pre>
-        
-    </div>
-    
-    
-    
-    
-    
-    
-    <div id="comment">
-        <div id="twikoo-container"></div>
-    </div>
-    
     
 </div>
 
@@ -236,22 +208,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-<script>
-    twikoo.init({
-        el: "#twikoo-container",
-        envId: "https://netlify-twikoo.netlify.app/.netlify/functions/twikoo",
-        region: "ap-shanghai",
-        path: location.pathname,
-        lang: "zh-CN",
-    })
-</script>
-
-
     
     <canvas
     id="fireworks"
