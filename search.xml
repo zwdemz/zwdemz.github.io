@@ -44,6 +44,12 @@
         <content type="html"><![CDATA[<p>This is my first blog<br>谨以纪念一下</p>]]></content>
       
       
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
       
         <tags>
             
