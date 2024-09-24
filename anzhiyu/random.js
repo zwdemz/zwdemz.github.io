@@ -27,7 +27,7 @@ var posts=["2023/09/07/centos7-9安装python3-8/","2022/05/07/first-blog/","2024
   
       let count = 0;
 
-      while (friend_link_list.length && count < 3) {
+      while (friend_link_list.length && count < 4) {
         const randomIndex = Math.floor(Math.random() * friend_link_list.length);
         const { name, link, avatar } = friend_link_list.splice(randomIndex, 1)[0];
   
