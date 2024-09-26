@@ -1,4 +1,4 @@
-var posts=["2023/09/07/centos7-9安装python3-8/","2022/05/07/first-blog/","2024/09/23/数学公式/"];function toRandomPost(){
+var posts=["2023/09/07/centos7-9安装python3-8/","2022/05/07/first-blog/","2024/09/23/数学公式/","2024/09/26/软件工程复习/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };var friend_link_list=[{"name":"liaodada","link":"https://www.github.com/liaodada","avatar":"https://pic.imgdb.cn/item/66e5b9f1d9c307b7e977e204.jpg","descr":"生活明朗，万物可爱","color":"vip","tag":"技术"},{"name":"安知鱼","link":"https://blog.anheyu.com/","avatar":"https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg","descr":"生活明朗，万物可爱","siteshot":"https://npm.elemecdn.com/anzhiyu-theme-static@1.1.6/img/blog.anheyu.com.jpg","color":"vip","tag":"技术"},{"name":"liaodada","link":"https://www.github.com/liaodada","avatar":"https://pic.imgdb.cn/item/66e5b9f1d9c307b7e977e204.jpg","recommend":true},{"name":"安知鱼","link":"https://blog.anheyu.com/","avatar":"https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg","descr":"生活明朗，万物可爱","recommend":true}];
     var refreshNum = 1;
