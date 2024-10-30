@@ -218,6 +218,33 @@
     
     
     <entry>
+      <title>Windows基础知识</title>
+      <link href="/2023/10/30/Windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <url>/2023/10/30/Windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="windows基础知识">Windows基础知识</h1><p>Server版与个人版区别 win server 安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Server版本：针对服务器平台，安全策略非常严格，从Windows Server 2008 R 2 开始不在提</span><br><span class="line">供 32 位版本，可安装的硬件更多</span><br><span class="line">个人版本：针对个人PC，安全策略较为宽松，有 32 位和 64 位版本，可安装的硬件较少</span><br><span class="line">Windows Server 的主要目标是运行的稳定性、通用性和安全性、Windows 个人版以改善用</span><br><span class="line">户体验、丰富功能为主要目标</span><br></pre></td></tr></table></figure><p><img src="https://pic.imgdb.cn/item/67223e55d29ded1a8c9983d5.png"alt="image-20241030220829952" /></p><p>Windows server发布时间表</p><p><imgsrc="https://pic.imgdb.cn/item/67223edcd29ded1a8c9a2c7c.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67223f0fd29ded1a8c9a7809.png" /></p><h2 id="server版与个人版区别">Server版与个人版区别</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">● Server版本：针对服务器平台，安全策略非常严格，从Windows Server 2008 R2开始不在提</span><br><span class="line">供32位版本，可安装的硬件更多</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">●个人版本：针对个人PC，安全策略较为宽松，有32位和64位版本，可安装的硬件较少</span><br><span class="line">●Windows Server 的主要目标是运行的稳定性、通用性和安全性、Windows 个人版以改善用</span><br><span class="line">户体验、丰富功能为主要目标</span><br></pre></td></tr></table></figure><h3 id="新建虚拟机">新建虚拟机</h3><p><imgsrc="https://pic.imgdb.cn/item/672240b1d29ded1a8c9d2cb1.png" /></p><p><strong>win server 2012 安装</strong></p><p><imgsrc="https://pic.imgdb.cn/item/672240e2d29ded1a8c9d9089.png" /></p><p>装winserver12，对版本进行选择</p><p><imgsrc="https://pic.imgdb.cn/item/672241cfd29ded1a8c9f6c69.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/672241f7d29ded1a8c9fb512.png" /></p><h3 id="虚拟机位置不建议放在c盘因为">虚拟机位置不建议放在C盘，因为</h3><p>一个虚拟机大小都再10-20g，会把C盘塞满，最好放到固态</p><p><imgsrc="https://pic.imgdb.cn/item/67224229d29ded1a8c9ffffa.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/6722424dd29ded1a8ca03c03.png" /></p><h3 id="固件类型保持默认">固件类型保持默认</h3><h3id="处理器类型要更大一些不然会卡">处理器类型，要更大一些，不然会卡</h3><h3 id="内存划到4g">内存划到4G</h3><p><imgsrc="https://pic.imgdb.cn/item/67224274d29ded1a8ca07f19.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/672242cbd29ded1a8ca10d46.png" /></p><p>网络类型保持默认nat</p><p><imgsrc="https://pic.imgdb.cn/item/672242fbd29ded1a8ca156d4.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67224329d29ded1a8ca19a13.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/6722434ad29ded1a8ca1caed.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67224367d29ded1a8ca1f712.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/672243aad29ded1a8ca25847.png" /></p><p>新建，对硬盘</p><p><imgsrc="https://pic.imgdb.cn/item/672243cfd29ded1a8ca291d7.png" /></p><h3></h3><h3 id="进行分区">进行分区</h3><p><imgsrc="https://pic.imgdb.cn/item/672244afd29ded1a8ca3c935.png" /></p><ul><li>设置管理员账号及密码，Q1w2e</li></ul><p><imgsrc="https://pic.imgdb.cn/item/672244d4d29ded1a8ca3f9fd.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67224511d29ded1a8ca45763.png" /></p><p>安装VM tools 解决黑框问题</p><p><imgsrc="https://pic.imgdb.cn/item/67224538d29ded1a8ca4947a.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67224564d29ded1a8ca4ebc1.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/67224582d29ded1a8ca526ec.png" /></p><h3 id="设置远程访问">设置远程访问</h3><p><imgsrc="https://pic.imgdb.cn/item/672245b4d29ded1a8ca58c69.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/672245d7d29ded1a8ca5d321.png" /></p><img src="https://pic.imgdb.cn/item/672245fed29ded1a8ca6216d.png" style="zoom:90%;" /><ul><li>因为我们要把安装包，放到里面，确认IP地址进行连接</li></ul><p><imgsrc="https://pic.imgdb.cn/item/672246cad29ded1a8ca78886.png" /></p><h3 id="远程连接可能出现问题">远程连接可能出现问题</h3><h3 id="报错出现身份验证错误-要求的函数不受支持">报错：出现身份验证错误要求的函数不受支持</h3><p><imgsrc="https://pic.imgdb.cn/item/672247acd29ded1a8ca8d95d.png" /></p><h3 id="解决">解决：</h3><p>win+r 输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gpedit.msc</span><br></pre></td></tr></table></figure><p>442 exe 355 exe 删除安装程序的一些残留，点完⻚面不会有反应，只是鼠标处有沙漏显示，就是执行完了关闭远程，虚拟机内进行重启</p><p><imgsrc="https://pic.imgdb.cn/item/67224821d29ded1a8ca9843a.png" /></p><h3 id="命令重启">命令重启</h3><p>shutdown -r 重启 -t 重启时间 0 立刻重启 -f 强制重启</p><p>安装vm tools增强工具</p><p><imgsrc="https://pic.imgdb.cn/item/6722489cd29ded1a8caa379c.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/672248e8d29ded1a8caaa079.png" /></p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1 shutdown -r -t 0 -f</span><br></pre></td></tr></table></figure><h3 id="完成立即重启就安装完了">完成，立即重启，就安装完了</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> window </tag>
+            
+            <tag> winserver </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>centos7.9安装python3.8</title>
       <link href="/2023/09/07/centos7-9%E5%AE%89%E8%A3%85python3-8/"/>
       <url>/2023/09/07/centos7-9%E5%AE%89%E8%A3%85python3-8/</url>
