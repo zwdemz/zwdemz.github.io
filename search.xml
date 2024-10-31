@@ -218,6 +218,33 @@
     
     
     <entry>
+      <title>Linux基础防护</title>
+      <link href="/2024/05/31/Linux%E5%9F%BA%E7%A1%80%E9%98%B2%E6%8A%A4/"/>
+      <url>/2024/05/31/Linux%E5%9F%BA%E7%A1%80%E9%98%B2%E6%8A%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="系统更新先行"><strong>系统更新先行</strong></h2><p>系统不更新，啥安全都白扯！先把系统补丁更新做好：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br></pre></td></tr></table></figure><p>嫌每次更新麻烦？可以设置自动更新：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install unattended-upgrades</span><br><span class="line">sudo dpkg-reconfigure --priority=low unattended-upgrades</span><br></pre></td></tr></table></figure><h2 id="ssh安全加固"><strong>SSH安全加固</strong></h2><p>SSH就是远程登录的重要手段，不加固好就等于把家门随便放着。所以配置ssh的加固就非常重要：</p><h3 id="1-禁止root直接登录"><strong>1. 禁止root直接登录</strong></h3><p>编辑这个文件：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>找到<code>PermitRootLogin</code>，改成：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PermitRootLogin no</span><br></pre></td></tr></table></figure><h3 id="2-用密钥代替密码"><strong>2. 用密钥代替密码</strong></h3><p>这招特别好使！先在自己电脑上生成密钥：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096</span><br></pre></td></tr></table></figure><p>然后把公钥放到服务器上：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-copy-id username@server_ip</span><br></pre></td></tr></table></figure><p>关闭密码登录：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure><h3 id="3-换个隐蔽的端口"><strong>3. 换个隐蔽的端口</strong></h3><p>默认22端口太显眼了，换个其他端口，至少能躲掉一半的扫描：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Port 2222</span><br></pre></td></tr></table></figure><p>记得每次改完都要重启SSH：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure><h2 id="防火墙配置"><strong>防火墙配置</strong></h2><p>UFW是Ubuntu自带的防火墙，简单好用！</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装UFW</span><br><span class="line">sudo apt install ufw</span><br><span class="line"></span><br><span class="line"># 只开放需要的端口</span><br><span class="line">sudo ufw allow 2222/tcp  # SSH端口</span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br><span class="line"></span><br><span class="line"># 启动防火墙</span><br><span class="line">sudo ufw enable</span><br><span class="line"></span><br><span class="line"># 查看状态</span><br><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure><h2 id="用户权限管理"><strong>用户权限管理</strong></h2><p>安全的第一条铁律：给最小权限！</p><h3 id="1-创建普通用户"><strong>1. 创建普通用户</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser newuser</span><br></pre></td></tr></table></figure><h3 id="2-给sudo权限按需分配"><strong>2.给sudo权限（按需分配）</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG sudo newuser</span><br></pre></td></tr></table></figure><h3 id="3-设置sudo超时"><strong>3. 设置sudo超时</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure><p>加上这行（5分钟后要重新输密码）：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Defaults timestamp_timeout=5</span><br></pre></td></tr></table></figure><h2 id="暴力破解防护"><strong>暴力破解防护</strong></h2><p>Fail2ban是个好东西，能自动封禁那些试图暴力破解的IP：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install fail2ban</span><br></pre></td></tr></table></figure><p>默认配置就挺好，想调整可以改<code>/etc/fail2ban/jail.local</code>。</p><h2 id="病毒防护"><strong>病毒防护</strong></h2><p>ClamAV是Linux下的免费杀毒软件，装上总没错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install clamav clamav-daemon</span><br><span class="line"></span><br><span class="line"># 更新病毒库</span><br><span class="line">sudo freshclam</span><br><span class="line"></span><br><span class="line"># 扫描home目录</span><br><span class="line">sudo clamscan -r /home</span><br></pre></td></tr></table></figure><h2 id="磁盘加密"><strong>磁盘加密</strong></h2><p>特别是笔记本，丢了就麻烦了。建议在安装系统时就选择加密，已经装好的系统可以用LUKS加密重要目录。</p><h2 id="双因素认证2fa"><strong>双因素认证（2FA）</strong></h2><p>再安全的密码也可能被破解，加个双因素认证保险一点：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装Google认证器</span><br><span class="line">sudo apt install libpam-google-authenticator</span><br><span class="line"></span><br><span class="line"># 运行配置向导</span><br><span class="line">google-authenticator</span><br></pre></td></tr></table></figure><h2 id="日志监控"><strong>日志监控</strong></h2><p>光有防护还不够，得知道谁来过：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install logwatch</span><br><span class="line">sudo logwatch --detail high --mailto your-email@example.com</span><br></pre></td></tr></table></figure><h2 id="精简服务"><strong>精简服务</strong></h2><p>没用的服务都关掉，能少一个攻击面是一个：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看运行的服务</span><br><span class="line">systemctl list-units --type=service --state=running</span><br><span class="line"></span><br><span class="line"># 关闭不需要的服务</span><br><span class="line">sudo systemctl stop service_name</span><br><span class="line">sudo systemctl disable service_name</span><br></pre></td></tr></table></figure><h2 id="写在最后"><strong>写在最后</strong></h2><p>以上这些配置，都是我在实战中反复验证过的。但记住，安全不是一劳永逸的事情，需要持续关注和维护。建议大家把这些配置做成脚本，方便重复使用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础防护 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows基础知识</title>
       <link href="/2023/10/30/Windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
       <url>/2023/10/30/Windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
