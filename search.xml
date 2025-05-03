@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>常用流量分析</title>
+      <link href="/2025/05/03/%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/"/>
+      <url>/2025/05/03/%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="流量分析">流量分析</h1><h2 id="cs流量特征"><strong>CS流量特征</strong></h2><p>对比正常的http流量，CS的<ahref="https://cn.bing.com/search?q=http通信">http通信</a>流量具有以下几个特征：</p><h3 id="一-心跳包特征">一. 心跳包特征</h3><ol type="1"><li>间隔一定时间，均有通信，且流级上的上下行数据长度固定；</li></ol><h3 id="二-域名ip特征">二. 域名/IP特征</h3><ol type="1"><li><p>未走<ahref="https://cn.bing.com/search?q=CDN">CDN</a>、域前置的，域名及IP暴露</p></li><li><p>走CDN、域前置的，真实IP会被隐藏；</p></li></ol><h3 id="三-指令特征">三. 指令特征</h3><ol type="1"><li><p>下发指令时，通过心跳包接收指令，这时，server端返回的包更长，甚至包含要加载的dll模块数据。</p></li><li><p>指令执行完后，client端通过POST请求发送执行的结果数据，body部分通过加密和base64编码。</p></li><li><p>不同指令，执行的时间间隔不一样，可以通过POST请求和GET请求的间隔进行判断。</p></li></ol><h3 id="四-数据特征">四. 数据特征</h3><ol type="1"><li>在请求的返回包中，通信数据均隐藏在jqeury*.js中。</li></ol><h2 id="菜刀"><strong>菜刀：</strong></h2><p>菜刀（Chopper）是中国黑客圈内使用非常广泛的一款Webshell管理工具。中国菜刀用途十分广泛，支持多种语言，小巧实用。</p><p>伪造 X-Forwarded-For头，每次利用X-Forwarded-For头都会不同</p><p>执行了 base64_decode 函数对 z0 进行 base64 后，经过 eval函数执行命令</p><p>QGluaV9</p><p>@ini_set(“display_errors”</p><h2 id="蚁剑"><strong>蚁剑：</strong></h2><p><ahref="https://so.csdn.net/so/search?q=蚁剑&amp;spm=1001.2101.3001.7020">蚁剑</a>（AntSword）是一款功能强大的跨平台渗透测试工具，被广泛用于攻击和渗透测试活动。</p><p>如果用默认的蚁剑测试，连接时会请求两次</p><p>其请求体只是经过 url 编码</p><p>@ini_set(“display_errors”</p><p>在执行命令，文件操作等地方会有0x开头的参数</p><ol type="1"><li>主要表现在HTTP协议上，使用HTTP协议通信，控制命令和数据都通过POST请求传输。因此，可以通过HTTP请求头中的User-Agent、Referer等信息进行识别，eval函数必不可少，有可能会被assert代替。</li><li>使用了base64的方式加密了发送给“菜刀马”的指令，其中的两个关键payloadz1和z2，这个名字是可变的 。</li><li>有<span class="math inline">\(_POST/\)</span>_GET/$_REQUEST</li></ol><h2 id="冰蝎"><strong>冰蝎：</strong></h2><p><ahref="https://so.csdn.net/so/search?q=冰蝎&amp;spm=1001.2101.3001.7020">冰蝎</a>（Behinder）是一款基于Java开发的动态加密通信流量的新型<ahref="https://so.csdn.net/so/search?q=Webshell&amp;spm=1001.2101.3001.7020">Webshell</a>客户端，由于通信流量被加密，传统的WAF、IDS设备难以检测，给威胁狩猎带来较大挑战。</p><ol type="1"><li>流量特征主要表现在数据包中的特殊标记和传输的数据类型。冰蝎的数据包中包含了特定的标记，如“flag=0x52415631“，用于标识该数据包是冰蝎的控制命令。此外，冰蝎还使用了一种自定义的二进制协议，在通信中传输各种类型的数据</li><li>看包没有发现什么特征，但是可以发现它是POST请求的appication/xhtm1+xmlapplication/xmlapplication/signe1、Accept头有d-exchange属于弱特征(UA头的浏览器版本很老)2、特征分析Content-Type: application/octet-stream这是-个强特征查阅资料可知octet-stream的意思是，只能提交二进制，而日只能提交一个三进制，如果提交文件的话，只能提交一个文件，后台接收参数只能有一个，而且只能是流(或者字节数组); 很少使用14。</li><li>默认内置16个user-agent头。</li><li>content-length请求长度，对于文件上传、命令执行来说加密参数不定长；但是对获取基本信息的payload都定长。</li></ol><p>消息体内容采用 AES 加密</p><p>流量会以时间的方式生成长度 16 的随机 key</p><p>中间结果字符串 assert|eval(“phpinfo();”)此数据由冰蝎加载器发出的，已经定义好的</p><h3 id="冰蝎20"><strong>冰蝎2.0</strong></h3><p>​默认Accept字段的值很特殊,而且每个阶段都一样冰蝎内置了十余种15userAgent，每次连接 shel1会随机选择一个进行使用。但都是比较老的，容易被检测到，但是可以在burp中修改ua头Content-Length:16，16就是冰蝎2连接的特征</p><h3 id="冰蝎30"><strong>冰蝎3.0</strong></h3><ol type="1"><li><p>冰蝎3取消动态密钥获取，目前很多waf等设备都做了冰蝎2的流量特征分析，所以3取消了动态密钥获取;php抓包看包没有发现什么特征，但是可以发现它是POST请求的Accept。</p></li><li><p>application/xhtm1+xmlapplication/xmlapplication/signed-exchange属于弱特征。</p></li><li><p>ua头该特征属于弱特征。通过burp可以修改，冰蝎3.0内置的默认16个userAgent都比较老。现实生活中很少有人使用，所以这个也可以作为waf规则特征。</p></li><li><p>jsp抓包特征分析Content-Type: application/octet-stream这是一个<strong>强特征</strong>查阅资料可知octet-stream的意思是，<strong>只能提交二进制，而且只能提交一个二进制</strong>，如果提交文件的话，只能提交一个文件后台接收参数只能有一个，而且只能是流(或者字节数组)。</p></li><li><p>content-length长度为5720或5740(随Java版本改变)</p></li></ol><h3 id="冰蝎40"><strong>冰蝎4.0</strong></h3><ol type="1"><li><p>10个内置ua头随机选用</p></li><li><p>端口为49700左右，每次连接会递增</p></li><li><p>PHPwebshell存在固定代码</p><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$post</span>=<span class="title function_ invoke__">Decrypt</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$post</span>);</span><br></pre></td></tr></table></figure></li></ol><p>content字段中，将eval($post)作为流量特征纳入</p><ol start="4" type="1"><li><p>请求头和响应头字节固定 请求头和响应头里会带有 ConnectionConnection: Keep-Alive</p></li><li><p>webshell存在默认字符串，为默认连接密码的MD5的前16位</p></li><li><p>Content-Type不再是二进制，改成urlencoded，但是是弱特征</p></li></ol><h2 id="哥斯拉"><strong>哥斯拉</strong></h2><p>哥斯拉（<ahref="https://github.com/kong030813/Z-Godzilla_ekp">Godzilla</a>）由Java语言开发，内置了3种Payload以及6种加密器，6种支持脚本后缀，20个内置插件。</p><ol type="1"><li>流量特征主要表现在数据包的特殊标记和数据类型。哥斯拉的数据包中包含了特定的标记，如“XORHEAD“和“XORBODY“，用于标识该数据包是哥斯拉的控制命令。此外，哥斯拉还使用了一种自定义的二进制协议，在通信中传输各种类型的数据。</li><li>Cookie字段中存在一个关键的特征，即最后一个Cookie值的末尾有一个不必要的分号，在标准的HTTP请求中，最后一个Cookie的值后面不应该出现分号。</li><li>响应包结构特征:MD5前16位+base64+MD5后16位</li><li>注入内存马时有大量的URL请求,路径相同但参数不同,或者页面不存在但是返回200</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>nginx配置https的ssl证书和域名</title>
       <link href="/2024/10/10/nginx%E9%85%8D%E7%BD%AEhttps%E7%9A%84ssl%E8%AF%81%E4%B9%A6%E5%92%8C%E5%9F%9F%E5%90%8D/"/>
       <url>/2024/10/10/nginx%E9%85%8D%E7%BD%AEhttps%E7%9A%84ssl%E8%AF%81%E4%B9%A6%E5%92%8C%E5%9F%9F%E5%90%8D/</url>
